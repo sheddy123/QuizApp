@@ -23,6 +23,12 @@ namespace QuizApp.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("BatchNumber")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("BatchRunId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int?>("CorrectCount")
                         .HasColumnType("INTEGER");
 
@@ -35,6 +41,9 @@ namespace QuizApp.Api.Migrations
                     b.Property<double?>("Score")
                         .HasColumnType("REAL");
 
+                    b.Property<bool>("ShuffleOptions")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("ShuffleSeed")
                         .HasColumnType("INTEGER");
 
@@ -45,6 +54,8 @@ namespace QuizApp.Api.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BatchRunId");
 
                     b.HasIndex("QuestionSetId");
 
@@ -102,6 +113,25 @@ namespace QuizApp.Api.Migrations
                         .IsUnique();
 
                     b.ToTable("AttemptItems");
+                });
+
+            modelBuilder.Entity("QuizApp.Api.Domain.BatchRun", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("QuestionSetId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionSetId");
+
+                    b.ToTable("BatchRuns");
                 });
 
             modelBuilder.Entity("QuizApp.Api.Domain.Option", b =>
@@ -197,11 +227,18 @@ namespace QuizApp.Api.Migrations
 
             modelBuilder.Entity("QuizApp.Api.Domain.Attempt", b =>
                 {
+                    b.HasOne("QuizApp.Api.Domain.BatchRun", "BatchRun")
+                        .WithMany("Attempts")
+                        .HasForeignKey("BatchRunId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("QuizApp.Api.Domain.QuestionSet", "QuestionSet")
                         .WithMany()
                         .HasForeignKey("QuestionSetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("BatchRun");
 
                     b.Navigation("QuestionSet");
                 });
@@ -244,6 +281,17 @@ namespace QuizApp.Api.Migrations
                     b.Navigation("Question");
                 });
 
+            modelBuilder.Entity("QuizApp.Api.Domain.BatchRun", b =>
+                {
+                    b.HasOne("QuizApp.Api.Domain.QuestionSet", "QuestionSet")
+                        .WithMany()
+                        .HasForeignKey("QuestionSetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("QuestionSet");
+                });
+
             modelBuilder.Entity("QuizApp.Api.Domain.Option", b =>
                 {
                     b.HasOne("QuizApp.Api.Domain.Question", "Question")
@@ -274,6 +322,11 @@ namespace QuizApp.Api.Migrations
             modelBuilder.Entity("QuizApp.Api.Domain.AttemptItem", b =>
                 {
                     b.Navigation("Answers");
+                });
+
+            modelBuilder.Entity("QuizApp.Api.Domain.BatchRun", b =>
+                {
+                    b.Navigation("Attempts");
                 });
 
             modelBuilder.Entity("QuizApp.Api.Domain.Question", b =>
