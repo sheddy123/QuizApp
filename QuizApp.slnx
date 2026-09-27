@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/QuizApp.Api/QuizApp.Api.csproj" />
+    <Project Path="src/QuizApp.Parsing/QuizApp.Parsing.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/QuizApp.Parsing.Tests/QuizApp.Parsing.Tests.csproj" />
+  </Folder>
+  <Folder Name="/docs/">
+    <File Path="README.md" />
+  </Folder>
+</Solution>
