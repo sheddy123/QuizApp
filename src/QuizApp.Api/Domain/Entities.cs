@@ -54,11 +54,30 @@ public class Attempt
 
     /// <summary>Seed used to shuffle questions and options, so an attempt can be re-rendered identically.</summary>
     public int ShuffleSeed { get; set; }
+    public bool ShuffleOptions { get; set; }
     public bool PartialCredit { get; set; }
     public double? Score { get; set; }
     public int? CorrectCount { get; set; }
 
     public List<AttemptItem> Items { get; set; } = new();
+
+    /// <summary>Set when this attempt is one batch of a <see cref="BatchRun"/>; null for a standalone attempt.</summary>
+    public int? BatchRunId { get; set; }
+    public BatchRun? BatchRun { get; set; }
+    public int? BatchNumber { get; set; }
+}
+
+/// <summary>
+/// A set split into several batches taken separately. Each batch is an ordinary <see cref="Attempt"/>,
+/// all created up front so no question appears in more than one batch.
+/// </summary>
+public class BatchRun
+{
+    public int Id { get; set; }
+    public int QuestionSetId { get; set; }
+    public QuestionSet? QuestionSet { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public List<Attempt> Attempts { get; set; } = new();
 }
 
 public class AttemptItem

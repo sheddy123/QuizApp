@@ -34,7 +34,10 @@ public record QuizQuestion(int QuestionId, int Order, string Stem, bool MultiSel
 
 public record QuizOption(int OptionId, string Label, string Text);
 
-public record AttemptView(int AttemptId, string SetName, DateTime StartedAt, List<QuizQuestion> Questions);
+/// <summary>Where an attempt sits in a batch run; null on standalone attempts.</summary>
+public record BatchInfo(int RunId, int BatchNumber, int BatchCount);
+
+public record AttemptView(int AttemptId, string SetName, DateTime StartedAt, List<QuizQuestion> Questions, BatchInfo? Batch);
 
 public record SubmitRequest(List<AnswerInput> Answers);
 
@@ -49,7 +52,8 @@ public record AttemptResult(
     int CorrectCount,
     int QuestionCount,
     DateTime SubmittedAt,
-    List<QuestionResult> Questions);
+    List<QuestionResult> Questions,
+    BatchInfo? Batch);
 
 public record QuestionResult(
     int QuestionId,
@@ -64,3 +68,35 @@ public record QuestionResult(
     string? ReviewNote);
 
 public record OptionResult(int OptionId, string Label, string Text, bool IsCorrect, bool WasSelected);
+
+// ---------- Batch runs ----------
+
+public record StartRunRequest(
+    int QuestionSetId,
+    int BatchCount,
+    bool ShuffleQuestions = true,
+    bool ShuffleOptions = false,
+    bool PartialCredit = false,
+    bool OnlyPreviouslyWrong = false);
+
+public record BatchStatus(
+    int BatchNumber,
+    int AttemptId,
+    int QuestionCount,
+    bool Submitted,
+    double? Score,
+    int? CorrectCount,
+    DateTime? SubmittedAt);
+
+/// <summary>Combined score across all batches. Only present once every batch is submitted.</summary>
+public record RunTotal(double Score, int CorrectCount, int QuestionCount);
+
+public record RunView(
+    int RunId,
+    int QuestionSetId,
+    string SetName,
+    DateTime CreatedAt,
+    List<BatchStatus> Batches,
+    RunTotal? Total);
+
+public record RunSummary(int RunId, int QuestionSetId, DateTime CreatedAt, int BatchCount, int SubmittedCount);
