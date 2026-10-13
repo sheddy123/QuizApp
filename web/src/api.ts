@@ -1,5 +1,6 @@
 import type {
-  AttemptResult, AttemptView, DraftQuestion, ParseResponse, SetSummary, StartAttemptRequest
+  AttemptResult, AttemptView, DraftQuestion, ParseResponse, RunSummary, RunView, SetSummary, StartAttemptRequest,
+  StartRunRequest
 } from './types'
 
 async function request<T>(url: string, init?: RequestInit): Promise<T> {
@@ -42,5 +43,14 @@ export const api = {
   submit: (id: number, answers: { questionId: number; optionIds: number[] }[]) =>
     request<AttemptResult>(`/api/attempts/${id}/submit`, { method: 'POST', body: JSON.stringify({ answers }) }),
 
-  getResult: (id: number) => request<AttemptResult>(`/api/attempts/${id}/result`)
+  getResult: (id: number) => request<AttemptResult>(`/api/attempts/${id}/result`),
+
+  startRun: (request_: StartRunRequest) =>
+    request<RunView>('/api/runs', { method: 'POST', body: JSON.stringify(request_) }),
+
+  listRuns: () => request<RunSummary[]>('/api/runs'),
+
+  getRun: (id: number) => request<RunView>(`/api/runs/${id}`),
+
+  deleteRun: (id: number) => request<void>(`/api/runs/${id}`, { method: 'DELETE' })
 }

@@ -41,11 +41,18 @@ export interface QuizQuestion {
   options: QuizOption[]
 }
 
+export interface BatchInfo {
+  runId: number
+  batchNumber: number
+  batchCount: number
+}
+
 export interface AttemptView {
   attemptId: number
   setName: string
   startedAt: string
   questions: QuizQuestion[]
+  batch: BatchInfo | null
 }
 
 export interface OptionResult extends QuizOption {
@@ -74,6 +81,7 @@ export interface AttemptResult {
   questionCount: number
   submittedAt: string
   questions: QuestionResult[]
+  batch: BatchInfo | null
 }
 
 export interface StartAttemptRequest {
@@ -83,4 +91,40 @@ export interface StartAttemptRequest {
   shuffleOptions: boolean
   partialCredit: boolean
   onlyPreviouslyWrong: boolean
+}
+
+export interface StartRunRequest {
+  questionSetId: number
+  batchCount: number
+  shuffleQuestions: boolean
+  shuffleOptions: boolean
+  partialCredit: boolean
+  onlyPreviouslyWrong: boolean
+}
+
+export interface BatchStatus {
+  batchNumber: number
+  attemptId: number
+  questionCount: number
+  submitted: boolean
+  score: number | null
+  correctCount: number | null
+  submittedAt: string | null
+}
+
+export interface RunView {
+  runId: number
+  questionSetId: number
+  setName: string
+  createdAt: string
+  batches: BatchStatus[]
+  total: { score: number; correctCount: number; questionCount: number } | null
+}
+
+export interface RunSummary {
+  runId: number
+  questionSetId: number
+  createdAt: string
+  batchCount: number
+  submittedCount: number
 }

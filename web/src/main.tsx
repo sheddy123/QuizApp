@@ -6,6 +6,7 @@ import SetsPage from './pages/SetsPage'
 import ImportPage from './pages/ImportPage'
 import QuizPage from './pages/QuizPage'
 import ResultPage from './pages/ResultPage'
+import RunPage from './pages/RunPage'
 import './styles.css'
 
 const router = createBrowserRouter([
@@ -16,7 +17,8 @@ const router = createBrowserRouter([
       { index: true, element: <SetsPage /> },
       { path: 'import', element: <ImportPage /> },
       { path: 'attempts/:attemptId', element: <QuizPage /> },
-      { path: 'attempts/:attemptId/result', element: <ResultPage /> }
+      { path: 'attempts/:attemptId/result', element: <ResultPage /> },
+      { path: 'runs/:runId', element: <RunPage /> }
     ]
   }
 ])
