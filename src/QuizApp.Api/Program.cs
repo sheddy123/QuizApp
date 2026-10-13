@@ -36,6 +36,7 @@ if (app.Environment.IsDevelopment())
 
 app.MapImportEndpoints();
 app.MapQuizEndpoints();
+app.MapRunEndpoints();
 app.MapGet("/api/health", () => new { status = "ok" });
 
 app.Run();
