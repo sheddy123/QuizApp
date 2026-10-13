@@ -8,8 +8,11 @@ export default function QuizPage() {
   const id = Number(attemptId)
   const navigate = useNavigate()
   const [attempt, setAttempt] = useState<AttemptView | null>(null)
-  const [answers, setAnswers] = useState<Record<number, number[]>>({})
-  const [index, setIndex] = useState(0)
+  // Progress lives in localStorage so a reload (phone locking, Vite reconnecting) doesn't lose it.
+  const storageKey = `quiz-progress-${id}`
+  const [saved] = useState(() => loadProgress(storageKey))
+  const [answers, setAnswers] = useState<Record<number, number[]>>(saved.answers)
+  const [index, setIndex] = useState(saved.index)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -17,10 +20,18 @@ export default function QuizPage() {
     api.getAttempt(id).then(setAttempt).catch(e => setError(e.message))
   }, [id])
 
+  useEffect(() => {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify({ answers, index }))
+    } catch {
+      // Storage unavailable (private mode) - progress just won't survive a reload.
+    }
+  }, [storageKey, answers, index])
+
   if (error) return <p className="error">{error}</p>
   if (!attempt) return <p className="muted">Loading…</p>
 
-  const question = attempt.questions[index]
+  const question = attempt.questions[Math.min(index, attempt.questions.length - 1)]
   const selected = answers[question.questionId] ?? []
   const answeredCount = Object.values(answers).filter(a => a.length > 0).length
 
@@ -44,6 +55,7 @@ export default function QuizPage() {
         questionId: Number(questionId),
         optionIds
       })))
+      try { localStorage.removeItem(storageKey) } catch { /* ignore */ }
       navigate(`/attempts/${id}/result`)
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Submit failed.')
@@ -54,7 +66,10 @@ export default function QuizPage() {
   return (
     <section>
       <div className="row">
-        <h2 className="grow">{attempt.setName}</h2>
+        <h2 className="grow">
+          {attempt.setName}
+          {attempt.batch && ` · batch ${attempt.batch.batchNumber} of ${attempt.batch.batchCount}`}
+        </h2>
         <span className="muted">
           Question {index + 1} of {attempt.questions.length} · {answeredCount} answered
         </span>
@@ -109,4 +124,13 @@ export default function QuizPage() {
       </div>
     </section>
   )
+}
+
+function loadProgress(key: string): { answers: Record<number, number[]>; index: number } {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(key) ?? '')
+    return { answers: parsed.answers ?? {}, index: Number(parsed.index) || 0 }
+  } catch {
+    return { answers: {}, index: 0 }
+  }
 }

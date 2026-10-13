@@ -23,7 +23,10 @@ export default function ResultPage() {
     <section>
       <div className="score">
         <strong>{percent}%</strong>
-        <span>{result.correctCount} of {result.questionCount} correct</span>
+        <span>
+          {result.batch && `Batch ${result.batch.batchNumber} of ${result.batch.batchCount}: `}
+          {result.correctCount} of {result.questionCount} correct
+        </span>
       </div>
 
       <div className="row">
@@ -32,7 +35,9 @@ export default function ResultPage() {
           Show only what I got wrong
         </label>
         <span className="grow" />
-        <Link to="/">Back to sets</Link>
+        {result.batch
+          ? <Link to={`/runs/${result.batch.runId}`}>Back to batches</Link>
+          : <Link to="/">Back to sets</Link>}
       </div>
 
       {shown.length === 0 && <p className="muted">Nothing wrong. Untick the box to see every question.</p>}

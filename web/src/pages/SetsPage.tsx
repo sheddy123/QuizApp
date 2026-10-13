@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { api } from '../api'
-import type { SetSummary } from '../types'
+import type { RunSummary, SetSummary } from '../types'
 
 export default function SetsPage() {
   const navigate = useNavigate()
   const [sets, setSets] = useState<SetSummary[]>([])
   const [selected, setSelected] = useState<number | null>(null)
   const [count, setCount] = useState<string>('')
+  const [batches, setBatches] = useState<string>('')
+  const [runs, setRuns] = useState<RunSummary[]>([])
   const [shuffle, setShuffle] = useState(true)
   const [shuffleOptions, setShuffleOptions] = useState(false)
   const [partial, setPartial] = useState(false)
@@ -16,11 +18,25 @@ export default function SetsPage() {
 
   useEffect(() => {
     api.listSets().then(setSets).catch(e => setError(e.message))
+    api.listRuns().then(setRuns).catch(e => setError(e.message))
   }, [])
 
   async function start(setId: number) {
     setError(null)
+    const batchCount = Number(batches)
     try {
+      if (batchCount >= 2) {
+        const run = await api.startRun({
+          questionSetId: setId,
+          batchCount,
+          shuffleQuestions: shuffle,
+          shuffleOptions,
+          partialCredit: partial,
+          onlyPreviouslyWrong: onlyWrong
+        })
+        navigate(`/runs/${run.runId}`)
+        return
+      }
       const attempt = await api.startAttempt({
         questionSetId: setId,
         questionCount: count ? Number(count) : null,
@@ -71,19 +87,46 @@ export default function SetsPage() {
             <button className="ghost" onClick={() => void remove(set.id)}>Delete</button>
           </div>
 
+          {runs.filter(r => r.questionSetId === set.id).map(r => (
+            <p key={r.runId} className="muted">
+              <Link to={`/runs/${r.runId}`}>
+                Batch run from {new Date(r.createdAt).toLocaleDateString()}
+              </Link>
+              {' '}· {r.submittedCount} of {r.batchCount} batches done
+            </p>
+          ))}
+
           {selected === set.id && (
             <div className="settings">
               <label>
-                How many questions
+                Split into batches
                 <input
                   type="number"
-                  min={1}
+                  min={2}
                   max={set.questionCount}
-                  placeholder={`All (${set.questionCount})`}
-                  value={count}
-                  onChange={e => setCount(e.target.value)}
+                  placeholder="No"
+                  value={batches}
+                  onChange={e => setBatches(e.target.value)}
                 />
               </label>
+              {Number(batches) >= 2 ? (
+                <p className="muted">
+                  {Number(batches)} batches of about {Math.ceil(set.questionCount / Number(batches))} questions,
+                  none repeated. Each is scored on its own, with a total once all are done.
+                </p>
+              ) : (
+                <label>
+                  How many questions
+                  <input
+                    type="number"
+                    min={1}
+                    max={set.questionCount}
+                    placeholder={`All (${set.questionCount})`}
+                    value={count}
+                    onChange={e => setCount(e.target.value)}
+                  />
+                </label>
+              )}
               <label><input type="checkbox" checked={shuffle} onChange={e => setShuffle(e.target.checked)} /> Shuffle questions</label>
               <label><input type="checkbox" checked={shuffleOptions} onChange={e => setShuffleOptions(e.target.checked)} /> Shuffle options</label>
               <label><input type="checkbox" checked={partial} onChange={e => setPartial(e.target.checked)} /> Partial credit on multi-answer</label>
