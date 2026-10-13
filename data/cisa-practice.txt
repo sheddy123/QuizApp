@@ -1,0 +1,399 @@
+1) When developing a risk-based IS audit plan, what should the IS auditor do FIRST?
+A. Select the controls to be tested
+B. Obtain an understanding of the organization's business processes and objectives
+C. Determine the sample sizes for substantive testing
+D. Schedule audit staff for each engagement
+Answer: B
+Explanation: A risk-based plan starts from the business. Risks, and the controls that address them, cannot be identified until the auditor understands the processes and objectives they support.
+
+2) An IS auditor wants to estimate the total monetary value of errors in a population of invoices. Which sampling method is MOST appropriate?
+A. Attribute sampling
+B. Discovery sampling
+C. Variable sampling
+D. Stop-or-go sampling
+Answer: C
+Explanation: Variable sampling estimates a monetary amount or other quantity. Attribute sampling estimates the rate of occurrence of a characteristic, and discovery sampling looks for at least one occurrence.
+
+3) Which of the following audit evidence is MOST reliable?
+A. A system report provided by the auditee
+B. A confirmation letter received directly from an independent third party
+C. A verbal statement from the IT manager
+D. Screenshots supplied by the system administrator
+Answer: B
+Explanation: Evidence from an independent source, received directly by the auditor, is more reliable than evidence produced or passed on by the auditee.
+
+4) An IS auditor helped design the controls for a new payroll system and is now asked to audit it. What is the BEST course of action?
+A. Perform the audit, because knowledge of the design will make the audit more efficient
+B. Disclose the potential impairment of independence to audit management before accepting the assignment
+C. Ask the system developer to review the audit findings
+D. Reduce the audit scope to controls the auditor did not design
+Answer: B
+Explanation: Auditing one's own work impairs objectivity. The impairment must be disclosed so that audit management can decide how to handle the assignment.
+
+5) Which continuous audit technique creates dummy entities in production files and processes test transactions against them alongside live data?
+A. Snapshots
+B. Integrated test facility (ITF)
+C. System control audit review file (SCARF)
+D. Audit hooks
+Answer: B
+Explanation: An ITF sets up fictitious entities in the live environment and compares the processing results against expected results.
+
+6) During fieldwork, an IS auditor reports a significant control weakness, and the auditee fixes it before the audit report is issued. What should the auditor do?
+A. Remove the finding from the report, because it has been resolved
+B. Include the finding in the report and note that corrective action was taken
+C. Report the finding verbally to management only
+D. Delay the report until the fix has been in place for six months
+Answer: B
+Explanation: The weakness existed during the audit period, so it belongs in the report. Noting the corrective action gives a complete and fair picture.
+
+7) What is the PRIMARY benefit of a control self-assessment (CSA) program?
+A. It replaces the need for internal audit
+B. It increases business line ownership of and accountability for controls
+C. It reduces the cost of external audits
+D. It eliminates the need for management to monitor controls
+Answer: B
+Explanation: CSA involves process owners in evaluating their own controls, which strengthens their ownership. It complements internal audit rather than replacing it.
+
+8) The authority, scope and responsibilities of the IS audit function should be documented in the:
+A. audit engagement letter
+B. audit charter approved by the board or audit committee
+C. IT strategic plan
+D. annual audit plan
+Answer: B
+Explanation: The audit charter establishes the audit function's authority and accountability. Engagement letters cover individual engagements.
+
+9) What is the PRIMARY advantage of statistical sampling over nonstatistical (judgmental) sampling?
+A. It always requires a smaller sample
+B. It allows the auditor to quantify sampling risk objectively
+C. It removes the need for auditor judgment
+D. It guarantees that all errors will be found
+Answer: B
+Explanation: Statistical sampling lets the auditor measure the probability that the sample is not representative (sampling risk). Judgment is still needed, and it guarantees nothing.
+
+10) Which body is PRIMARILY responsible for advising the board on the alignment of IT strategy with business strategy?
+A. IT steering committee
+B. IT strategy committee
+C. Project management office
+D. Change advisory board
+Answer: B
+Explanation: The IT strategy committee operates at board level and advises on strategic alignment. The steering committee operates at executive level and oversees projects and priorities.
+
+11) Who is ultimately responsible for determining the classification of data?
+A. The data custodian
+B. The security administrator
+C. The data owner
+D. The database administrator
+Answer: C
+Explanation: Data owners are business managers accountable for the data. They decide its classification and who may access it. Custodians implement their decisions.
+
+12) Which combination of duties poses the GREATEST risk?
+A. An application programmer with write access to production program libraries
+B. A network administrator who also staffs the help desk
+C. A security administrator who reviews access logs
+D. A quality assurance analyst who executes test scripts
+Answer: A
+Explanation: A programmer who can change production code can introduce unauthorized changes without passing through change control, which defeats segregation of duties.
+
+13) In a small organization, one person performs both system administration and security administration. What is the BEST compensating control?
+A. Requiring the person to take annual leave
+B. Independent management review of that person's activity logs
+C. Increasing the password length for that person's account
+D. Documenting the job description
+Answer: B
+Explanation: When duties cannot be separated, an independent review of the person's activity detects misuse of the combined privileges.
+
+14) Who is responsible for accepting residual risk on behalf of the organization?
+A. The IS auditor
+B. The chief information security officer
+C. Senior management
+D. The system administrator
+Answer: C
+Explanation: Risk acceptance is a business decision made by senior management within the risk appetite set by the board. Auditors and security staff advise but do not accept risk.
+
+15) What is the PRIMARY purpose of an IT balanced scorecard?
+A. To track the IT department's budget variances
+B. To measure IT performance against business-aligned objectives beyond financial measures
+C. To rank IT staff for performance reviews
+D. To replace service level agreements
+Answer: B
+Explanation: A balanced scorecard evaluates IT from several perspectives (business contribution, user orientation, operational excellence and future orientation) to show alignment with business goals.
+
+16) An organization outsources its data center operations. Accountability for protecting customer data remains with:
+A. the service provider
+B. the organization that outsourced the operations
+C. the external auditor
+D. the regulator
+Answer: B
+Explanation: Tasks can be outsourced, but accountability cannot. The organization must oversee the provider through the contract, monitoring and audit rights.
+
+17) When reviewing an information security policy, what is it MOST important for the IS auditor to confirm?
+A. It is based on a recognized framework
+B. It has been approved by senior management
+C. It is longer than the previous version
+D. It lists technical configuration settings
+Answer: B
+Explanation: Senior management approval gives the policy its authority and shows management commitment. Technical settings belong in standards and procedures.
+
+18) What is the PRIMARY purpose of a right-to-audit clause in an outsourcing contract?
+A. To reduce the cost of the service
+B. To allow the organization to verify the effectiveness of the provider's controls
+C. To transfer liability for breaches to the provider
+D. To guarantee service availability
+Answer: B
+Explanation: A right-to-audit clause lets the organization (or its auditors) obtain assurance over the controls the provider operates on its behalf.
+
+19) What is the PRIMARY objective of user acceptance testing (UAT)?
+A. To verify that the code meets programming standards
+B. To confirm that the system meets documented business requirements
+C. To test system performance under peak load
+D. To ensure that individual modules interface correctly
+Answer: B
+Explanation: UAT is performed by users to confirm that the system does what the business needs before it is accepted into production.
+
+20) When should the business case for a project be reviewed?
+A. Only at project initiation
+B. Only after implementation
+C. At key decision points throughout the project life cycle
+D. Only when the budget is exceeded
+Answer: C
+Explanation: Revisiting the business case at each key decision point confirms that the project is still justified and allows it to be stopped or redirected early.
+
+21) What is the PRIMARY objective of a post-implementation review?
+A. To identify programming errors
+B. To determine whether the project's objectives and expected benefits were achieved
+C. To evaluate the performance of the project team
+D. To close the project budget
+Answer: B
+Explanation: A post-implementation review assesses whether the system delivered what the business case promised and captures lessons learned.
+
+22) What is the BEST control over emergency changes to production systems?
+A. Prohibiting emergency changes entirely
+B. Documenting the change and obtaining retroactive approval through the normal change process
+C. Allowing only senior developers to make emergency changes
+D. Recording the change in the help desk system only
+Answer: B
+Explanation: Emergency changes are sometimes necessary, but they must still be documented, reviewed and approved after the fact so that nothing escapes change control.
+
+23) What is the PRIMARY purpose of parallel testing when implementing a new system?
+A. To test the system's performance under stress
+B. To compare the results of the new system with those of the old system
+C. To test each module independently
+D. To train users on the new system
+Answer: B
+Explanation: In parallel testing, both systems process the same data so that differences in results can be identified before the old system is retired.
+
+24) Which is the MOST important control when migrating data to a new system?
+A. Encrypting the data during transfer
+B. Reconciling record counts and control totals between the old and new systems
+C. Deleting the old data immediately after migration
+D. Having developers verify the migration
+Answer: B
+Explanation: Reconciling record counts and control totals shows that data was transferred completely and accurately.
+
+25) Which metric defines the maximum amount of data an organization can afford to lose, measured in time?
+A. Recovery time objective (RTO)
+B. Recovery point objective (RPO)
+C. Maximum tolerable downtime (MTD)
+D. Service delivery objective (SDO)
+Answer: B
+Explanation: RPO is the point in time to which data must be restored, so it drives backup frequency. RTO is how quickly service must be restored.
+
+26) A critical system has a recovery time objective of a few minutes. Which recovery strategy is MOST appropriate?
+A. Cold site
+B. Warm site
+C. Hot site with data mirroring
+D. Reciprocal agreement
+Answer: C
+Explanation: A very short RTO requires a fully equipped site with current data. Cold and warm sites, and reciprocal agreements, take hours to days to activate.
+
+27) What is the FIRST step in developing a business continuity plan?
+A. Selecting a recovery site
+B. Performing a business impact analysis (BIA)
+C. Testing the plan
+D. Training staff
+Answer: B
+Explanation: The BIA identifies critical processes, their impact and their recovery objectives. These results drive every later decision in the plan.
+
+28) Which business continuity test is the MOST thorough without disrupting normal operations?
+A. Checklist review
+B. Tabletop walk-through
+C. Parallel test
+D. Full interruption test
+Answer: C
+Explanation: A parallel test brings up the recovery site and processes real data while production continues. A full interruption test is more thorough but disrupts operations.
+
+29) What is the PRIMARY objective of problem management?
+A. To restore service as quickly as possible
+B. To identify the root cause of incidents and prevent recurrence
+C. To log all user calls to the help desk
+D. To approve changes to production
+Answer: B
+Explanation: Incident management restores service. Problem management finds and removes underlying causes so that incidents do not recur.
+
+30) What is the MOST important consideration when selecting an offsite backup storage location?
+A. It is close enough for staff to reach quickly
+B. It is not subject to the same threats as the primary site
+C. It is owned by the organization
+D. It has the lowest storage cost
+Answer: B
+Explanation: A storage site that shares the primary site's risks, such as the same flood zone or power grid, may be lost in the same disaster.
+
+31) Which RAID level provides disk mirroring?
+A. RAID 0
+B. RAID 1
+C. RAID 5
+D. RAID 6
+Answer: B
+Explanation: RAID 1 writes identical data to two disks. RAID 0 stripes with no redundancy, and RAID 5 and 6 use striping with parity.
+
+32) Which BEST allows a database to be restored to a consistent state after a system failure?
+A. Daily full backups only
+B. Transaction logging with before-images and after-images
+C. Database encryption
+D. Referential integrity constraints
+Answer: B
+Explanation: Before-images and after-images let incomplete transactions be rolled back and committed transactions be rolled forward after a failure.
+
+33) Which audit procedure is MOST effective for detecting unauthorized changes to production programs?
+A. Reviewing change request forms
+B. Comparing production program versions against the last authorized versions
+C. Interviewing developers
+D. Reviewing the change management policy
+Answer: B
+Explanation: Code comparison finds changes that bypassed the change process, which a review of change forms would never show.
+
+34) How can an organization BEST verify that an IT service provider meets its service level agreement?
+A. Relying on the provider's assurances
+B. Regularly reviewing performance reports against the SLA metrics
+C. Renegotiating the contract annually
+D. Increasing the penalties in the contract
+Answer: B
+Explanation: SLAs are only useful if performance is measured and reviewed against the agreed metrics, with deviations followed up.
+
+35) An organization has confirmed a malware outbreak on several workstations. According to the incident response lifecycle, what should it do NEXT?
+A. Eradicate the malware
+B. Contain the incident
+C. Conduct a lessons-learned review
+D. Restore systems from backup
+Answer: B
+Explanation: After an incident is identified, containment limits the damage and stops the spread. Eradication, recovery and lessons learned follow.
+
+36) What is the GREATEST risk of spreadsheets used for financial reporting (end-user computing)?
+A. They require expensive licenses
+B. Errors may go undetected because of a lack of change control and testing
+C. They are slower than enterprise applications
+D. Users need training to use them
+Answer: B
+Explanation: End-user computing tools often bypass formal development, testing and change controls, so errors in formulas or data can reach financial reports unnoticed.
+
+37) Which change management weakness should concern an IS auditor MOST?
+A. Changes are approved by a change advisory board
+B. Developers can move their own changes into production without independent review
+C. Changes are scheduled outside business hours
+D. Change requests are recorded in a ticketing system
+Answer: B
+Explanation: Without segregation between development and migration to production, unauthorized or untested changes can reach production.
+
+38) Access rights should be granted according to which principle?
+A. Seniority
+B. Least privilege and need to know
+C. Convenience for users
+D. Department membership only
+Answer: B
+Explanation: Users should receive only the access needed for their job duties. This limits the damage from errors, misuse and compromised accounts.
+
+39) What is the MOST effective control to ensure that terminated employees lose access promptly?
+A. An annual review of user accounts
+B. Prompt notification from HR to the security administrator, triggering immediate deactivation
+C. Password expiry every 90 days
+D. Requiring managers to recover ID badges
+Answer: B
+Explanation: A defined process linking HR terminations to immediate access removal closes the window of exposure. Periodic reviews find stale accounts only after the fact.
+
+40) A digital signature provides all of the following EXCEPT:
+A. integrity
+B. authentication of the sender
+C. non-repudiation
+D. confidentiality
+Answer: D
+Explanation: A digital signature proves who sent a message and that it was not altered. It does not hide the content. Confidentiality requires encryption.
+
+41) To create a digital signature, the sender encrypts the message hash with the:
+A. sender's public key
+B. sender's private key
+C. recipient's public key
+D. recipient's private key
+Answer: B
+Explanation: Only the sender holds their private key, so anyone can verify the signature with the sender's public key.
+
+42) To send a message that only the intended recipient can read using public key cryptography, the sender encrypts it with the:
+A. sender's private key
+B. sender's public key
+C. recipient's public key
+D. recipient's private key
+Answer: C
+Explanation: Anything encrypted with the recipient's public key can be decrypted only with the recipient's private key.
+
+43) Which type of firewall can inspect the content of traffic at the application layer?
+A. Packet-filtering router
+B. Stateful inspection firewall
+C. Application-level gateway (proxy firewall)
+D. Circuit-level gateway
+Answer: C
+Explanation: An application-level gateway understands application protocols and can filter based on content. Packet filters and stateful firewalls work mainly with header and session information.
+
+44) When comparing the accuracy of biometric systems, which measure is the BEST overall indicator?
+A. False acceptance rate (FAR)
+B. False rejection rate (FRR)
+C. Crossover error rate (CER)
+D. Enrollment time
+Answer: C
+Explanation: The CER is the point where FAR equals FRR. The lower the CER, the more accurate the system overall.
+
+45) What is the MOST effective control against social engineering attacks?
+A. Stronger firewalls
+B. Security awareness training for staff
+C. Intrusion detection systems
+D. Encryption of stored data
+Answer: B
+Explanation: Social engineering targets people rather than technology, so educating staff to recognize and report such attempts is the most effective defense.
+
+46) Which measure MOST strengthens user authentication?
+A. Longer password expiry periods
+B. Multifactor authentication
+C. Displaying the last login time
+D. Allowing password reuse
+Answer: B
+Explanation: MFA requires two or more factors (something you know, have or are), so a stolen password alone is not enough to gain access.
+
+47) Which method is MOST effective for ensuring that data cannot be recovered from decommissioned hard drives?
+A. Deleting all files
+B. Reformatting the drives
+C. Physically destroying the drives
+D. Removing the partition table
+Answer: C
+Explanation: Deleting files, reformatting and removing partitions leave data recoverable. Physical destruction makes recovery infeasible.
+
+48) Which configuration provides the STRONGEST security for a corporate wireless network?
+A. WEP with a shared key
+B. WPA2-Personal with a pre-shared key
+C. WPA3-Enterprise with 802.1X authentication
+D. A hidden SSID with MAC address filtering
+Answer: C
+Explanation: Enterprise mode authenticates each user individually through a server, and WPA3 provides stronger encryption. WEP is broken, and hidden SSIDs and MAC filtering are easily bypassed.
+
+49) Which control can both detect and automatically block malicious network traffic?
+A. Intrusion detection system (IDS)
+B. Intrusion prevention system (IPS)
+C. Security information and event management (SIEM)
+D. Network traffic analyzer
+Answer: B
+Explanation: An IPS sits inline and can drop malicious traffic. An IDS only detects and alerts, and a SIEM correlates and reports events.
+
+50) What is MOST important for audit logs to serve as reliable evidence?
+A. They are stored in plain text for easy reading
+B. They are protected from unauthorized modification or deletion
+C. They are kept on the same server as the application
+D. They are reviewed only after an incident
+Answer: B
+Explanation: If logs can be altered by the people whose activity they record, they cannot be relied on. Write-once storage or restricted access protects their integrity.

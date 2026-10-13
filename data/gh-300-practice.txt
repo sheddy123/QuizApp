@@ -1,0 +1,320 @@
+1) Which sources of context does GitHub Copilot use when generating inline code completions in the IDE? (Choose two.)
+A. Code before and after the cursor in the current file
+B. The developer's browser history
+C. Every repository in the developer's organization
+D. Other files open in editor tabs
+Answer: A, D
+Explanation: Inline completions are built from the current file around the cursor and from related open tabs. Copilot does not read browser history or scan every repository in the organization.
+
+2) What is a role of the GitHub Copilot proxy service?
+A. It permanently stores all prompts for model training
+B. It compiles and runs the suggested code
+C. It filters prompts and responses, for example for toxic language or prompt hacking, before and after the model
+D. It replaces the large language model for simple completions
+Answer: C
+Explanation: The proxy, hosted on Microsoft Azure, sits between the IDE and the model. It filters requests and responses. It does not run code or replace the model.
+
+3) An organization wants to stop GitHub Copilot from offering suggestions that match public code. What should an administrator configure?
+A. Content exclusions for all repositories
+B. Audit log streaming
+C. Disabling Copilot Chat in the IDE
+D. Setting the "Suggestions matching public code" policy to Block
+Answer: D
+Explanation: The duplication detection filter checks suggestions of roughly 150 characters or more against public code on GitHub and suppresses matches when set to Block.
+
+4) When suggestions matching public code are allowed, what does code referencing provide?
+A. Details of the matching public code, such as the repository it came from and its license
+B. Automatic attribution comments inserted into your code
+C. A guarantee that the suggestion is free of license obligations
+D. A rewrite of the suggestion so that it no longer matches
+Answer: A
+Explanation: Code referencing shows where matching code was found and under which license, so the developer can decide whether and how to use it.
+
+5) What are the effects of configuring content exclusions for a file in GitHub Copilot Business? (Choose two.)
+A. The file is encrypted in the repository
+B. The file's content is not used as context for Copilot suggestions in other files
+C. Copilot does not offer inline suggestions while editing the file
+D. The file is removed from the repository's Git history
+Answer: B, C
+Explanation: Excluded content is not sent as context and does not receive completions. Content exclusion does not encrypt or delete anything.
+
+6) Which GitHub Copilot plans allow administrators to configure content exclusions? (Choose two.)
+A. Copilot Free
+B. Copilot Pro
+C. Copilot Business
+D. Copilot Enterprise
+Answer: C, D
+Explanation: Content exclusion is an organization and enterprise policy feature, so it is available in Copilot Business and Copilot Enterprise.
+
+7) For GitHub Copilot Business, how is the customer's code in prompts used for training the underlying models?
+A. It is used to fine-tune the public model weekly
+B. It is not used to train the models
+C. It is used only if the repository is public
+D. It is shared with other Copilot Business customers to improve suggestions
+Answer: B
+Explanation: GitHub does not use Copilot Business or Enterprise customers' prompts and suggestions to train its models.
+
+8) Which of the following are Microsoft's principles for responsible AI that apply to GitHub Copilot? (Choose three.)
+A. Fairness
+B. Profitability
+C. Transparency
+D. Accountability
+E. Speed of delivery
+Answer: A, C, D
+Explanation: The six principles are fairness, reliability and safety, privacy and security, inclusiveness, transparency, and accountability.
+
+9) In the context of generative AI, what is a "hallucination"?
+A. A suggestion that is plausible-looking but incorrect or fabricated
+B. A suggestion blocked by the duplication detection filter
+C. A delay in receiving suggestions from the model
+D. A suggestion that exactly matches public code
+Answer: A
+Explanation: Models can confidently produce code or facts that do not exist or are wrong, such as calls to nonexistent APIs. This is why output must be reviewed.
+
+10) What should a developer do before committing code suggested by GitHub Copilot?
+A. Commit immediately, since Copilot suggestions are pre-tested
+B. Ask Copilot whether the code is correct and trust its answer
+C. Review, test and validate the code like any other code
+D. Only check that the code compiles
+Answer: C
+Explanation: Copilot is an assistant. The developer stays responsible for the correctness, security and quality of what they commit.
+
+11) Which of the following are known limitations of GitHub Copilot? (Choose two.)
+A. It can suggest code that contains security vulnerabilities
+B. It guarantees that all suggestions are correct
+C. It may suggest outdated or deprecated APIs because of its training data
+D. It always knows the latest version of every library
+Answer: A, C
+Explanation: Suggestions reflect patterns in training data, which can include insecure or outdated code. Copilot guarantees neither correctness nor knowledge of the latest versions.
+
+12) A developer includes two input and output examples in a prompt before asking Copilot to write a similar function. What is this technique called?
+A. Zero-shot prompting
+B. Few-shot prompting
+C. Fine-tuning
+D. Retrieval-augmented generation
+Answer: B
+Explanation: Few-shot prompting gives the model a few examples of the desired pattern. Zero-shot prompting gives none.
+
+13) Which prompt is MOST likely to produce a useful function from GitHub Copilot?
+A. "Write some code"
+B. "Make a sort function"
+C. "Fix everything"
+D. "Write a TypeScript function that sorts an array of users by lastName, then firstName, case-insensitively, without mutating the input"
+Answer: D
+Explanation: Specific prompts that state the language, inputs, expected behavior and constraints give the model the context it needs.
+
+14) Which practices improve the results of prompts given to GitHub Copilot? (Choose two.)
+A. Breaking a complex task into smaller, sequential steps
+B. Keeping prompts vague to give Copilot more freedom
+C. Providing relevant examples or context, such as sample data or expected output
+D. Combining several unrelated requests into one prompt
+Answer: A, C
+Explanation: Smaller steps and relevant context or examples help the model. Vague prompts and unrelated requests lead to generic or confused output.
+
+15) Which Copilot Chat slash command generates unit tests for the selected code?
+A. /explain
+B. /tests
+C. /doc
+D. /clear
+Answer: B
+Explanation: /tests generates tests for the selection. /explain explains code, /doc adds documentation comments, and /clear starts a new conversation.
+
+16) Which Copilot Chat slash command proposes a fix for problems in the selected code?
+A. /new
+B. /doc
+C. /fix
+D. /help
+Answer: C
+Explanation: /fix proposes changes to resolve problems in the selected code. /new scaffolds a new project, and /help shows usage information.
+
+17) In VS Code Copilot Chat, which chat participant should you use to ask questions about the code across your whole project?
+A. @workspace
+B. @terminal
+C. @vscode
+D. @github
+Answer: A
+Explanation: @workspace answers questions using context from the open workspace. @terminal covers the integrated terminal, and @vscode covers the editor itself.
+
+18) A developer wants to ask Copilot Chat about a specific file without opening it. What can they use in the chat prompt?
+A. The /explain command only
+B. A #file reference to attach the file as context
+C. The @terminal participant
+D. A content exclusion
+Answer: B
+Explanation: Chat variables such as #file and #selection attach specific context to a prompt.
+
+19) Where can a repository store custom instructions that Copilot Chat automatically includes with requests in that repository?
+A. .github/copilot-instructions.md
+B. README.md
+C. .gitignore
+D. .github/CODEOWNERS
+Answer: A
+Explanation: Repository custom instructions in .github/copilot-instructions.md tell Copilot about the project's conventions, frameworks and preferences.
+
+20) Which command asks GitHub Copilot in the CLI to explain what a shell command does?
+A. gh copilot suggest
+B. gh copilot explain
+C. gh repo view
+D. git explain
+Answer: B
+Explanation: gh copilot explain describes a given command. gh copilot suggest proposes a command for a task you describe.
+
+21) In VS Code on Windows, which keyboard shortcut shows the next alternative inline suggestion?
+A. Tab
+B. Esc
+C. Alt+]
+D. Ctrl+S
+Answer: C
+Explanation: Alt+] and Alt+[ cycle through alternative suggestions. Tab accepts a suggestion, and Esc dismisses it.
+
+22) Which GitHub Copilot events can be found in an organization's audit log? (Choose two.)
+A. Changes to Copilot policy settings
+B. The text of prompts developers type in the IDE
+C. Seats being assigned to or removed from users
+D. Each inline suggestion a developer accepts
+Answer: A, C
+Explanation: The audit log records administrative events such as policy changes and seat management. It does not record prompts or individual suggestions.
+
+23) Who can assign GitHub Copilot Business seats to members of an organization?
+A. Any repository collaborator
+B. Organization owners
+C. Members with read access
+D. GitHub Support only
+Answer: B
+Explanation: Organization owners manage Copilot settings and decide which members or teams receive seats.
+
+24) A team lead wants to know how often developers accept Copilot's inline suggestions. Which metric is MOST relevant?
+A. Number of pull requests merged
+B. Lines of code in the repository
+C. Acceptance rate
+D. Number of open issues
+Answer: C
+Explanation: Acceptance rate, the share of shown suggestions that are accepted, is a core Copilot usage metric available from the Copilot metrics API and dashboards.
+
+25) How can GitHub Copilot help with testing? (Choose two.)
+A. Generating unit tests for existing functions
+B. Guaranteeing 100% code coverage
+C. Suggesting edge cases and boundary values to test
+D. Removing the need for human review of tests
+Answer: A, C
+Explanation: Copilot speeds up writing tests and can suggest cases you may have missed. It cannot guarantee coverage, and its tests still need review.
+
+26) Copilot generated unit tests for a function, and all of them pass. Why should the developer still review the tests?
+A. Generated tests always fail in CI
+B. The tests may assert the function's current behavior, including bugs, rather than the intended behavior
+C. Copilot tests cannot be run locally
+D. Generated tests are written in a different language from the code
+Answer: B
+Explanation: Tests generated from existing code can lock in wrong behavior. Tests must reflect the requirements, not just the current implementation.
+
+27) Which Copilot Chat mode in VS Code can make changes across multiple files and run terminal commands, with the developer's approval, to complete a task?
+A. Ask mode
+B. Agent mode
+C. Inline completions
+D. Code referencing
+Answer: B
+Explanation: Agent mode plans and carries out multi-step tasks, editing files and proposing terminal commands. Ask mode only answers questions.
+
+28) A developer assigns a GitHub issue to Copilot. What does the Copilot coding agent do?
+A. Closes the issue as a duplicate
+B. Works on the task in the background and opens a pull request for review
+C. Merges changes directly into the default branch without review
+D. Converts the issue into a discussion
+Answer: B
+Explanation: The coding agent works in its own environment and proposes changes through a pull request, which a human reviews before merging.
+
+29) What is the BEST way to reduce the risk of committing insecure code suggested by Copilot?
+A. Accept only short suggestions
+B. Disable Copilot Chat
+C. Review the code and use security tooling such as code scanning and dependency review
+D. Rely on the duplication detection filter
+Answer: C
+Explanation: Copilot has some filtering for insecure patterns, but nothing replaces human review backed by security testing tools. The duplication filter addresses public code matches, not security.
+
+30) Which Copilot Chat slash command adds documentation comments to the selected code?
+A. /doc
+B. /tests
+C. /fix
+D. /new
+Answer: A
+Explanation: /doc generates documentation comments for the selected code, such as JSDoc or XML doc comments.
+
+31) Which development environments support GitHub Copilot? (Choose two.)
+A. Visual Studio Code
+B. Microsoft Word
+C. JetBrains IDEs such as IntelliJ IDEA
+D. Windows Notepad
+Answer: A, C
+Explanation: Copilot supports VS Code, Visual Studio, JetBrains IDEs, Neovim, Xcode and Eclipse, among others. It does not run in general-purpose text or document editors.
+
+32) Copilot's suggestions are not relevant to the task a developer is working on. What is a good way to improve them?
+A. Close all files, including the one being edited
+B. Open files relevant to the task and close unrelated ones
+C. Reinstall the IDE
+D. Disable the duplication detection filter
+Answer: B
+Explanation: Copilot draws context from open tabs. Relevant open files improve the context, and unrelated files add noise.
+
+33) A developer types a detailed comment describing a function and then starts a new line. What is Copilot likely to do?
+A. Delete the comment
+B. Suggest an implementation based on the comment
+C. Ask the developer to open Copilot Chat
+D. Nothing, because Copilot ignores comments
+Answer: B
+Explanation: Descriptive comments are a strong signal of intent, and Copilot uses them to suggest the code that follows.
+
+34) Who is accountable for code generated by GitHub Copilot that is committed to a project?
+A. GitHub
+B. The model provider
+C. The developer and the organization that commit and ship the code
+D. No one, because the code was generated by AI
+Answer: C
+Explanation: Under the accountability principle, people remain responsible for AI-assisted work. Copilot is a tool, and the developer owns what they commit.
+
+35) Which actions can help reduce bias and unfairness when using AI-generated code? (Choose two.)
+A. Reviewing suggestions for assumptions about users, such as names, genders or locales
+B. Accepting suggestions without changes to avoid introducing human bias
+C. Testing with diverse and representative data
+D. Disabling all tests to speed up delivery
+Answer: A, C
+Explanation: Models can reproduce biases from their training data. Critical review and testing with diverse inputs help catch unfair behavior.
+
+36) What does GitHub Copilot use to complete code in the middle of a file, using both the code before and after the cursor?
+A. Fill-in-the-middle (FIM)
+B. Few-shot prompting
+C. Code referencing
+D. Content exclusion
+Answer: A
+Explanation: Fill-in-the-middle lets the model see the code on both sides of the cursor, which improves completions inserted inside existing code.
+
+37) Which statements about GitHub Copilot Chat responses are true? (Choose two.)
+A. Responses can be wrong, so they should be verified
+B. Responses are guaranteed to reflect the latest documentation
+C. Responses depend on the context and wording of the prompt
+D. Responses are identical every time for the same prompt
+Answer: A, C
+Explanation: Chat responses are generated, not looked up. They vary with context and phrasing and can contain errors, so they need verification.
+
+38) A developer's company forbids sending a folder of secret configuration files to Copilot. Which feature should the administrator use?
+A. Code referencing
+B. Duplication detection filter
+C. Content exclusion
+D. Copilot metrics API
+Answer: C
+Explanation: Content exclusion prevents specified paths from being used by Copilot. The other features address public code matches and usage reporting.
+
+39) Which of the following describe a good use of GitHub Copilot for refactoring? (Choose two.)
+A. Asking Copilot Chat to suggest ways to improve the readability of a selected function
+B. Asking Copilot to rewrite an entire application in one prompt without review
+C. Asking Copilot to explain legacy code before changing it
+D. Letting Copilot remove tests that fail after the refactor
+Answer: A, C
+Explanation: Focused requests and understanding code before changing it lead to safe refactoring. Large unreviewed rewrites and deleting failing tests do not.
+
+40) What happens to inline suggestions when a developer presses Esc in VS Code?
+A. The suggestion is accepted
+B. The suggestion is dismissed
+C. The next suggestion is shown
+D. Copilot is disabled for the file
+Answer: B
+Explanation: Esc dismisses the current inline suggestion. Tab accepts it, and Alt+] shows the next one.

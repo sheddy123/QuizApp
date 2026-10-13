@@ -11,6 +11,7 @@ public class QuizDbContext(DbContextOptions<QuizDbContext> options) : DbContext(
     public DbSet<Attempt> Attempts => Set<Attempt>();
     public DbSet<AttemptItem> AttemptItems => Set<AttemptItem>();
     public DbSet<AttemptAnswer> AttemptAnswers => Set<AttemptAnswer>();
+    public DbSet<BatchRun> BatchRuns => Set<BatchRun>();
 
     protected override void OnModelCreating(ModelBuilder b)
     {
@@ -44,6 +45,18 @@ public class QuizDbContext(DbContextOptions<QuizDbContext> options) : DbContext(
             e.HasMany(x => x.Items)
              .WithOne(x => x.Attempt!)
              .HasForeignKey(x => x.AttemptId)
+             .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        b.Entity<BatchRun>(e =>
+        {
+            e.HasOne(x => x.QuestionSet)
+             .WithMany()
+             .HasForeignKey(x => x.QuestionSetId)
+             .OnDelete(DeleteBehavior.Cascade);
+            e.HasMany(x => x.Attempts)
+             .WithOne(x => x.BatchRun)
+             .HasForeignKey(x => x.BatchRunId)
              .OnDelete(DeleteBehavior.Cascade);
         });
 
