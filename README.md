@@ -30,6 +30,22 @@ npm run dev
 The database file (`quizapp.db`) is created next to the API on first run. Delete it to start clean.
 Swagger is at http://localhost:5210/swagger.
 
+## Android app (offline)
+
+The same React UI also builds as an Android app that needs no server. In that build, `web/src/api.ts`
+swaps the HTTP client for `web/src/offline/localApi.ts`: a TypeScript port of the endpoints, grading and
+parser that stores everything on the phone (IndexedDB). The GH-300 set is loaded on first launch.
+
+```bash
+cd web
+npm run build:android      # vite build --mode android, then copies it into web/android
+npx cap open android       # opens Android Studio: Build > Build APK(s), or Run on a plugged-in phone
+```
+
+Needs Android Studio (or the Android SDK) and JDK 17. Capacitor is pinned to 6 for that reason - 7 needs JDK 21.
+
+`web/src/offline/parser.ts` mirrors `QuestionParser.cs`. A fix to one belongs in the other.
+
 ## Loading the GH-300 questions
 
 `data/gh-300.json` holds all 116 questions already extracted, in the exact shape the commit

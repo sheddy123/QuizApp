@@ -7,3 +7,4 @@ dist/
 *.db-wal
 .vs/
 .idea/
+*.tsbuildinfo

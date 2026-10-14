@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Quiz Practice</string>
+    <string name="title_activity_main">Quiz Practice</string>
+    <string name="package_name">com.quizapp.practice</string>
+    <string name="custom_url_scheme">com.quizapp.practice</string>
+</resources>

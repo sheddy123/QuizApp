@@ -2,6 +2,7 @@ import type {
   AttemptResult, AttemptView, DraftQuestion, ParseResponse, RunSummary, RunView, SetSummary, StartAttemptRequest,
   StartRunRequest
 } from './types'
+import { localApi } from './offline/localApi'
 
 async function request<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await fetch(url, {
@@ -15,7 +16,7 @@ async function request<T>(url: string, init?: RequestInit): Promise<T> {
   return response.status === 204 ? (undefined as T) : response.json()
 }
 
-export const api = {
+const httpApi = {
   listSets: () => request<SetSummary[]>('/api/sets'),
 
   deleteSet: (id: number) => request<void>(`/api/sets/${id}`, { method: 'DELETE' }),
@@ -54,3 +55,8 @@ export const api = {
 
   deleteRun: (id: number) => request<void>(`/api/runs/${id}`, { method: 'DELETE' })
 }
+
+export type Api = typeof httpApi
+
+/** The Android build (`npm run build:android`) runs with no server: everything lives on the phone. */
+export const api: Api = import.meta.env.VITE_OFFLINE === 'true' ? localApi : httpApi

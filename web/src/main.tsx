@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Capacitor } from '@capacitor/core'
+import { App as NativeApp } from '@capacitor/app'
 import App from './App'
 import SetsPage from './pages/SetsPage'
 import ImportPage from './pages/ImportPage'
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
     ]
   }
 ])
+
+// Android's back button walks back through the pages, and only leaves the app from the first one.
+if (Capacitor.isNativePlatform()) {
+  void NativeApp.addListener('backButton', ({ canGoBack }) => {
+    if (canGoBack) window.history.back()
+    else void NativeApp.exitApp()
+  })
+}
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
