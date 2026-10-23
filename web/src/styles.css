@@ -47,7 +47,7 @@ h3 { font-size: 15px; margin: 0 0 8px; }
 .muted { color: var(--muted); font-size: 13px; }
 .error { color: var(--bad); }
 .warning { color: var(--warn); font-size: 13px; margin: 4px 0; }
-.explanation { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 8px; }
+.explanation { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 8px; white-space: pre-line; }
 
 button {
   background: var(--accent);
