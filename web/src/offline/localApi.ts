@@ -3,7 +3,12 @@ import type {
   StartAttemptRequest, StartRunRequest
 } from '../types'
 import type { Api } from '../api'
-import sample from '../../../data/gh-300.json'
+import gh300 from '../../../data/gh-300.json'
+import cisa1 from '../../../data/cisa-13th-domain-1.json'
+import cisa2 from '../../../data/cisa-13th-domain-2.json'
+import cisa3 from '../../../data/cisa-13th-domain-3.json'
+import cisa4 from '../../../data/cisa-13th-domain-4.json'
+import cisa5 from '../../../data/cisa-13th-domain-5.json'
 import { extractText } from './extract'
 import { parseQuestions } from './parser'
 import {
@@ -15,8 +20,19 @@ import {
  * ImportEndpoints, QuizEndpoints, RunEndpoints and GradingService - same rules, same shapes.
  */
 
-// First launch starts with the GH-300 set already loaded, as `data/gh-300.json` does for the server.
-const db = () => load(database => commitSet(database, sample.name, sample.sourceFile, sample.questions as DraftQuestion[]))
+// The sets in `data/` that ship with the app, as the commit endpoint loads them for the server.
+const bundled = [gh300, cisa1, cisa2, cisa3, cisa4, cisa5]
+
+const db = () => load(database => {
+  // A database from before `seeded` existed was given GH-300 on its first launch.
+  database.seeded ??= [gh300.name]
+  const missing = bundled.filter(set => !database.seeded!.includes(set.name))
+  for (const set of missing) {
+    commitSet(database, set.name, set.sourceFile, set.questions as DraftQuestion[])
+    database.seeded.push(set.name)
+  }
+  return missing.length > 0
+})
 
 function notFound(what: string): never {
   throw new Error(`${what} not found.`)

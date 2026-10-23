@@ -68,6 +68,11 @@ export interface Database {
   sets: StoredSet[]
   attempts: StoredAttempt[]
   runs: StoredRun[]
+  /**
+   * Bundled sets already added, by set name, so each is added once and stays deleted if the user deletes it.
+   * Missing on databases created before this existed; those were seeded with GH-300 only.
+   */
+  seeded?: string[]
 }
 
 const dbName = 'quizapp'
@@ -104,16 +109,17 @@ async function write(db: Database): Promise<void> {
   })
 }
 
-/** Loads the database, seeding it on first launch. */
-export function load(seed: (db: Database) => void): Promise<Database> {
+/**
+ * Loads the database. `seed` runs on every launch, not just the first, so sets bundled with a newer
+ * version of the app reach existing installs too; it returns true when it changed anything.
+ */
+export function load(seed: (db: Database) => boolean): Promise<Database> {
   cached ??= (async () => {
     // Ask the browser not to evict our data under storage pressure.
     void navigator.storage?.persist?.()
     const existing = await read()
-    if (existing) return existing
-    const db: Database = { nextId: 1, sets: [], attempts: [], runs: [] }
-    seed(db)
-    await write(db)
+    const db: Database = existing ?? { nextId: 1, sets: [], attempts: [], runs: [], seeded: [] }
+    if (seed(db) || !existing) await write(db)
     return db
   })()
   return cached
