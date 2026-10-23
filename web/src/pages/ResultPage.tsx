@@ -64,6 +64,7 @@ export default function ResultPage() {
           </ul>
 
           {q.explanation && <p className="explanation">{q.explanation}</p>}
+          {q.reference && <p className="muted">{q.reference}</p>}
           {q.reviewNote && <p className="warning">{q.reviewNote}</p>}
         </article>
       ))}
