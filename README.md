@@ -34,7 +34,9 @@ Swagger is at http://localhost:5210/swagger.
 
 The same React UI also builds as an Android app that needs no server. In that build, `web/src/api.ts`
 swaps the HTTP client for `web/src/offline/localApi.ts`: a TypeScript port of the endpoints, grading and
-parser that stores everything on the phone (IndexedDB). The GH-300 set is loaded on first launch.
+parser that stores everything on the phone (IndexedDB). The sets in `data/` that `localApi.ts` lists in
+`bundled` (GH-300 and CISA) are added on launch, each once: an update that bundles a new set adds it to an
+existing install, and a set the user deletes stays deleted.
 
 ```bash
 cd web
@@ -59,6 +61,29 @@ curl -X POST http://localhost:5210/api/imports/commit \
 
 `data/gh-300.txt` is the same content as plain text. Paste it into the import page to exercise the
 parser end to end.
+
+## Loading the CISA questions
+
+`data/cisa-13th-domain-1.json` to `-5.json` hold 996 questions from the *CISA Official Questions,
+Answers & Explanations Manual, 13th Edition*, one set per domain (165, 164, 120, 263 and 284 questions),
+numbered as in the book, in the same shape:
+
+```bash
+for n in 1 2 3 4 5; do
+  curl -X POST http://localhost:5210/api/imports/commit \
+    -H "Content-Type: application/json" \
+    -d @data/cisa-13th-domain-$n.json
+done
+```
+
+The source PDF is a scan with no text layer, so it was OCR'd (Windows' built-in OCR engine), then parsed
+from the book's layout: `N.` question, `A.`–`D.` options, `X is the correct answer.`, then a justification
+per option, which becomes the explanation. Each question's `reference` gives its domain, its number within
+that domain, and the PDF page, so a doubtful question can be checked against the book. Every answer that
+appears in the book's sample-exam answer key (138 of them) matches.
+
+Known gaps: the scan skips book pages 406–407, so Domain 5 questions 64–67 are missing. One question
+(Domain 5, Q128) relies on a diagram, which is described in words in its stem.
 
 ## Project layout
 
